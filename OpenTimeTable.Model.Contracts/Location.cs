@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OpenTimeTable.Model.Contracts
+﻿namespace OpenTimeTable.Model.Contracts
 {
-    public class Class1
+    using System;
+
+    public class Location
     {
+        public Guid Id { get; set; }
+
+        public LocationType Type { get; set; }
+
+        public string Name { get; set; }
+
+        public Coordinates Coordinates { get; set; }
+
+        public double Distance { get; set; }
     }
 }
