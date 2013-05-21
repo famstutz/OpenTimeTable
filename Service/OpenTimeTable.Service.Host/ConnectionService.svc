@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="OpenTimeTable.Service.Host.ConnectionService" CodeBehind="ConnectionService.svc.cs" %>

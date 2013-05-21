@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{30DF3AA7-63C9-4489-9803-2DAD8BB71B33}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{2D54F094-6E4B-4390-A1A2-3982C235D7FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{A8E98CB4-A2A0-421F-836B-A2DB138F2C35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTimeTable.Model.Contracts", "OpenTimeTable.Model.Contracts\OpenTimeTable.Model.Contracts.csproj", "{080849FE-71D4-4A3F-BA6C-0ED0E64A10DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTimeTable.Service.Host", "OpenTimeTable.Service.Host\OpenTimeTable.Service.Host.csproj", "{C0D53AFF-064A-44BC-9275-748C63284C33}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{080849FE-71D4-4A3F-BA6C-0ED0E64A10DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{080849FE-71D4-4A3F-BA6C-0ED0E64A10DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{080849FE-71D4-4A3F-BA6C-0ED0E64A10DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{080849FE-71D4-4A3F-BA6C-0ED0E64A10DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0D53AFF-064A-44BC-9275-748C63284C33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0D53AFF-064A-44BC-9275-748C63284C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0D53AFF-064A-44BC-9275-748C63284C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0D53AFF-064A-44BC-9275-748C63284C33}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C0D53AFF-064A-44BC-9275-748C63284C33} = {2D54F094-6E4B-4390-A1A2-3982C235D7FA}
+		{080849FE-71D4-4A3F-BA6C-0ED0E64A10DB} = {A8E98CB4-A2A0-421F-836B-A2DB138F2C35}
+	EndGlobalSection
+EndGlobal
