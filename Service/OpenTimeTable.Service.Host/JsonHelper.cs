@@ -11,6 +11,5 @@
         {
             return JObject.ReadFrom(new JsonTextReader(new StreamReader(stream)));
         }
-
     }
 }

@@ -1,0 +1,50 @@
+﻿@model  OpenTimeTable.Client.Models.SearchConnection
+<h1>@T("Where do you want to go?")</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <table cellspacing="0" class="tt">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.LabelFor(model => model.From)</td>
+                <td>@Html.EditorFor(model => model.From)
+                    @Html.ValidationMessageFor(model => model.From)</td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.To)
+                </td>
+                <td>@Html.EditorFor(model => model.To)
+                    @Html.ValidationMessageFor(model => model.To)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Via)</td>
+                <td>
+                    @Html.EditorFor(model => model.Via)
+                    @Html.ValidationMessageFor(model => model.Via)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.When)
+                </td>
+                <td>@Html.EditorFor(model => model.When)
+                    @Html.ValidationMessageFor(model => model.When)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Search connection" /></td>
+            </tr>
+        </tbody>
+    </table>               
+}

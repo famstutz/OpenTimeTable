@@ -6,7 +6,7 @@ using System.Security;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OpenTimeTable")]
+[assembly: AssemblyTitle("OpenTimeTable.Client")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("Orchard")]
@@ -20,7 +20,7 @@ using System.Security;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("66ecef78-dd98-46c8-8c9c-ae919d3d64a2")]
+[assembly: Guid("a01f6bbf-033f-4299-a6cf-2a0abedb79f3")]
 
 // Version information for an assembly consists of the following four values:
 //

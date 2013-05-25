@@ -1,6 +1,5 @@
 ﻿namespace OpenTimeTable.Model.Contracts
 {
-    using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
@@ -14,7 +13,7 @@
         public Checkpoint To { get; set; }
 
         [DataMember]
-        public TimeSpan Duration { get; set; }
+        public string Duration { get; set; }
 
         [DataMember]
         public Service Service { get; set; }
@@ -23,9 +22,9 @@
         public List<string> Products { get; set; }
 
         [DataMember]
-        public int Capacity1st { get; set; }
+        public int? Capacity1st { get; set; }
 
         [DataMember]
-        public int Capacity2nd { get; set; }
+        public int? Capacity2nd { get; set; }
     }
 }

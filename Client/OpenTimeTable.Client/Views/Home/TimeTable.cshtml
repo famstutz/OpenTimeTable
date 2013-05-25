@@ -1,0 +1,50 @@
+﻿@model IEnumerable<OpenTimeTable.Client.ConnectionService.Connection>
+<h1>@T("Your timetable request")</h1>
+
+<table cellspacing="0" class="tt" />
+<thead>
+    <tr>
+        <th>Station/Stop
+        </th>
+        <th>Date
+        </th>
+        <th>Time
+        </th>
+        <th>Duration
+        </th>
+        <th>Travel with
+        </th>
+        <th>Information
+        </th>
+    </tr>
+</thead>
+<tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.From.Station.Name)<br />
+                @Html.DisplayFor(modelItem => item.To.Station.Name)
+            </td>
+            <td>
+                Departure: @Html.DisplayFor(modelItem => item.From.Departure, "Date")<br />
+                Arrival: @Html.DisplayFor(modelItem => item.To.Arrival, "Date")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.From.Departure, "Time")<br />
+                @Html.DisplayFor(modelItem => item.To.Arrival, "Time")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration).ToString().Substring(3)
+            </td>
+            <td>
+                @string.Join(", ", item.Products.Select(p => p).ToArray())
+            </td>
+            <td>
+                1. <img src="@Url.Content(string.Format("~/Modules/OpenTimeTable.Client/Content/icon_{0}.png", item.Capacity1st))"/><br />
+                2. <img src="@Url.Content(string.Format("~/Modules/OpenTimeTable.Client/Content/icon_{0}.png", item.Capacity2nd))"/>
+            </td>
+        </tr>
+    }
+</tbody>
+</table>

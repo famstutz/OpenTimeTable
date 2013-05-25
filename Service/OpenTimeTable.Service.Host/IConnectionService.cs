@@ -27,12 +27,12 @@
             string from, 
             string to, 
             string[] via,
-            DateTime dateTime,
-            bool isArrivalTime,
+            DateTime? dateTime,
+            bool? isArrivalTime,
             string[] transportations,
-            bool isDirect,
-            bool hasSleeper,
-            bool hasCouchette,
-            bool hasBike);
+            bool? isDirect,
+            bool? hasSleeper,
+            bool? hasCouchette,
+            bool? hasBike);
     }
 }

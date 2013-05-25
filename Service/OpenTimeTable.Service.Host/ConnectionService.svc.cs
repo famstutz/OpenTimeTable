@@ -14,13 +14,13 @@
             string from,
             string to,
             string[] via,
-            DateTime dateTime,
-            bool isArrivalTime,
+            DateTime? dateTime,
+            bool? isArrivalTime,
             string[] transportations,
-            bool isDirect,
-            bool hasSleeper,
-            bool hasCouchette,
-            bool hasBike)
+            bool? isDirect,
+            bool? hasSleeper,
+            bool? hasCouchette,
+            bool? hasBike)
         {
             var webRequest = WebRequestHelper.CreateConnectionsRequest(
                 from,
@@ -60,109 +60,7 @@
 
             foreach (var connection in connections)
             {
-                var from = connection["from"];
-                var fromPrognosis = from["prognosis"];
-                var fromStation = from["station"];
-                var fromStationCoordinates = fromStation["coordinate"];
-                var to = connection["to"];
-                var toPrognosis = from["prognosis"];
-                var toStation = from["station"];
-                var toStationCoordinates = fromStation["coordinate"];
-
-                yield return
-                    new Connection
-                        {
-                            From =
-                                new Checkpoint
-                                    {
-                                        Arrival = from.Value<DateTime?>("arrival"),
-                                        Departure = from.Value<DateTime?>("departure"),
-                                        Platform = from.Value<int>("platform"),
-                                        Prognosis =
-                                            new Prognosis
-                                                {
-                                                    Platform = fromPrognosis.Value<int?>("platform"),
-                                                    Arrival = fromPrognosis.Value<DateTime?>("arrival"),
-                                                    Departure = fromPrognosis.Value<DateTime?>("departure"),
-                                                    Capacity1st = fromPrognosis.Value<int>("capacity1st"),
-                                                    Capacity2nd = fromPrognosis.Value<int>("capacity2nd")
-                                                },
-                                        Station =
-                                            new Location
-                                                {
-                                                    Coordinates =
-                                                        new Coordinates
-                                                            {
-                                                                Type = fromStationCoordinates.Value<string>("type"),
-                                                                X = fromStationCoordinates.Value<float>("x"),
-                                                                Y = fromStationCoordinates.Value<float>(
-                                                                        "y"),
-                                                            },
-                                                    Distance =
-                                                        fromStation.Value<float?>(
-                                                            "distance"),
-                                                    Id = fromStation.Value<int?>("id"),
-                                                    Name =
-                                                        fromStation.Value<string>("name"),
-                                                    Score =
-                                                        fromStation.Value<int?>("score")
-                                                }
-                                    },
-                            To =
-                                new Checkpoint
-                                    {
-                                        Arrival = to.Value<DateTime?>("arrival"),
-                                        Departure = to.Value<DateTime?>("departure"),
-                                        Platform = to.Value<int>("platform"),
-                                        Prognosis =
-                                            new Prognosis
-                                                {
-                                                    Platform =
-                                                        toPrognosis.Value<int?>(
-                                                            "platform"),
-                                                    Arrival =
-                                                        toPrognosis.Value<DateTime?>(
-                                                            "arrival"),
-                                                    Departure =
-                                                        toPrognosis.Value<DateTime?>(
-                                                            "departure"),
-                                                    Capacity1st =
-                                                        toPrognosis.Value<int>(
-                                                            "capacity1st"),
-                                                    Capacity2nd =
-                                                        toPrognosis.Value<int>(
-                                                            "capacity2nd")
-                                                },
-                                        Station =
-                                            new Location
-                                                {
-                                                    Coordinates =
-                                                        new Coordinates
-                                                            {
-                                                                Type =
-                                                                    toStationCoordinates
-                                                                    .Value
-                                                                    <string>(
-                                                                        "type"),
-                                                                X =
-                                                                    toStationCoordinates
-                                                                    .Value
-                                                                    <float>(
-                                                                        "x"),
-                                                                Y =
-                                                                    toStationCoordinates
-                                                                    .Value
-                                                                    <float>(
-                                                                        "y"),
-                                                            },
-                                                    Distance =
-                                                        toStation.Value<float?>("distance"),
-                                                    Id = toStation.Value<int?>("id"),
-                                                    Name = toStation.Value<string>("name"),
-                                                    Score = toStation.Value<int?>("score")
-                                                }
-                                    }
-                        };
+                yield return connection.ToObject<Connection>();
             }
         }
     }

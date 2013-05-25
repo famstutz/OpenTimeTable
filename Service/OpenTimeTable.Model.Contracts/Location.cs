@@ -1,6 +1,5 @@
 ﻿namespace OpenTimeTable.Model.Contracts
 {
-    using System.Data.Services.Common;
     using System.Runtime.Serialization;
 
     [DataContract]
@@ -20,7 +19,5 @@
 
         [DataMember]
         public float? Distance { get; set; }
-
-
     }
 }

@@ -1,0 +1,10 @@
+﻿Name: OpenTimeTable.Client
+AntiForgery: enabled
+Author: Florian Amstutz
+Website: http://florian.amstutz.nu
+Version: 1.0
+OrchardVersion: 1.0
+Description: OpenTimeTable client.
+Features:
+    OpenTimeTable.Client:
+        Description: OpenTimeTable client.

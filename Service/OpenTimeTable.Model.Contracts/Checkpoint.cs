@@ -16,7 +16,7 @@
         public DateTime? Departure { get; set; }
 
         [DataMember]
-        public int Platform { get; set; }
+        public int? Platform { get; set; }
 
         [DataMember]
         public Prognosis Prognosis { get; set; }

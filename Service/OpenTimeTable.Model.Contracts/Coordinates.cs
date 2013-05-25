@@ -9,9 +9,9 @@
         public string Type { get; set; }
 
         [DataMember]
-        public float X { get; set; }
+        public float? X { get; set; }
 
         [DataMember]
-        public float Y { get; set; }
+        public float? Y { get; set; }
     }
 }

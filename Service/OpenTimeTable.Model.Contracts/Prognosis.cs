@@ -16,9 +16,9 @@
         public DateTime? Arrival { get; set; }
 
         [DataMember]
-        public int Capacity1st { get; set; }
+        public int? Capacity1st { get; set; }
 
         [DataMember]
-        public int Capacity2nd { get; set; }
+        public int? Capacity2nd { get; set; }
     }
 }
