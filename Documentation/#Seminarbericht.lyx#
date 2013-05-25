@@ -1,0 +1,743 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass scrreprt
+\begin_preamble
+\usepackage{graphics}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language german-ch
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+SBB Fahrplan als Web Service
+\end_layout
+
+\begin_layout Author
+Florian Amstutz <
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+florian@amstutz.nu
+\end_layout
+
+\end_inset
+
+>
+\end_layout
+
+\begin_layout Publishers
+Zürcher Hochschule für Angewandte Wissenschaften, Seminar Webprojekte mit
+ ASP.NET
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Einleitung
+\end_layout
+
+\begin_layout Standard
+Das Seminar Webprojekte mit ASP.NET wird im Rahmen des Wahlpflichtmoduls
+ Programmierung mit dem .NET Framework besucht und hat die selbstständige
+ Formulierung und Lösung eines Projekts mit ASP.NET zum Ziel hat.
+\end_layout
+
+\begin_layout Section
+Auftrag
+\end_layout
+
+\begin_layout Standard
+Im Rahmen des Seminar soll selbstständig ein Projekt zu einem ausgewählten
+ Thema erarbeitet werden.
+ Diese Seminararbeit hatte ursprünglich zum Ziel den SBB Fahrplan mittels
+ des Open Data Protocols zur Verfügung zu stellen.
+ Auf Grund der limitierenden SBB.ch Fahrplan-Webseite wurde die Aufgabenstellung
+ so abgeändert, das anstelle eines OData Services ein Web Service zur Verfügung
+ gestellt wird.
+\end_layout
+
+\begin_layout Chapter
+Hauptteil
+\end_layout
+
+\begin_layout Standard
+Diese Kapitel beschreibt die Umsetzung der Seminararbeit nach dem Wasserfallmode
+ll.
+ Nach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kuhrmann2012"
+
+\end_inset
+
+ ist das Wasserfallmodell insbesondere für einfach Projekte mit klar definierten
+ Anforderungen einsetzbar.
+ Da der Umfang dieser Seminararbeit überschaubar ist und der bearbeitende
+ Student der einzige Stakeholder ist, hat es sich als ideales Vorgehensmodell
+ für die Bearbeitung von Seminararbeiten herausgestellt.
+ Die einzelnen Unterkapitel des Hauptteils folgen auch Modell (siehe auch
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hung2007"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Section
+Anforderungen
+\end_layout
+
+\begin_layout Standard
+Der erste Schritt des Wasserfallmodells besteht darin die Anforderungen
+ an das zu entwickelnde System festzuhalten.
+ Aus Gründen der Einfachheit wurde dabei nur genau ein Use-Case identifiziert,
+ der im Rahmen dieser Arbeit implementiert werden wird (siehe Kapitel 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "sub:Use-Case-Spezifikation"
+
+\end_inset
+
+).
+ 
+\end_layout
+
+\begin_layout Standard
+Um überhaupt erst Use-Cases spezifizieren zu können beschreibt das erste
+ Unterkapitel den Systemkontext des geplanten Systems OpenTimeTable.
+\end_layout
+
+\begin_layout Subsection
+Systemkontext
+\end_layout
+
+\begin_layout Standard
+Der Systemkontext beschreibt die Sollperspektive, wie sich das System in
+ die Realität integrieren wird.
+ Hierdurch wird der Realitätsausschnitt identifiziert, der das System und
+ damit potenziell auch dessen Anforderungen beeinflusst.
+ Um die Anforderungen an das geplante System korrekt und vollständig spezifizier
+en zu können, ist es notwendig, die Beziehung zwischen den einzelnen materiellen
+ und immateriellen Aspekten im Systemkontext und dem geplanten System exakt
+ zu definieren.
+ Der für die Anforderungen des Systems relevante Ausschnitt der Realität
+ wird als Systemkontext bezeichnet (nach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Pohl2011"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Der Ursprung der Anforderungen des Systems liegt im Systemkontext des geplanten
+ Systems.
+ Aus diesem Grund wird der Systemkontext vor Erhebung und Dokumentierung
+ der Anforderungen festgelegt.
+ Der Systemkontext des Systems CRM-Applikation ist in Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Systemkontext"
+
+\end_inset
+
+ als Modell dargestellt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Systemkontext.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Systemkontext
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Systemkontext"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Use-Case-Spezifikation
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Use-Case-Spezifikation"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Pohl2011"
+
+\end_inset
+
+ zeigen Use-Case-Diagamme die aus einer externen Nutzungssicht wesentlichen
+ Funktionalitäten des betrachteten Systems sowie spezifische Beziehungen
+ der einzelnen Funktionalitäten untereinander beziehungsweise zu Aspekten
+ in der Umgebung des Systems.
+ Abgesehen vom Namen des Use-Cases und dessen Beziehungen dokumentieren
+ Use-Case-Diagramme keinerlei weitere Informationen über die einzelnen Use-Cases
+, wie z.B.
+ die Systematik der Interaktion eines Use-Case mit Akteuren in der Umgebung.
+ Diese Informationen werden unter Verwendung einer geeigneten Schablone
+ zusätzlich zum Use-Case-Diagramm textuell als Use-Case-Spezifikation festgehalt
+en.
+\end_layout
+
+\begin_layout Standard
+Alle funktionalen Anforderungen werden als Use-Cases modelliert und spezifiziert
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Die verwendete Schablone stammt aus 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Pohl2011"
+
+\end_inset
+
+ und dient zur zweckmässigen Strukturierung von Typen von Informationen,
+ die einen Use-Case betreffen.
+ Die vorgeschlagenen Abschnitte der Schablone Autor, Quelle, Verantwortlicher
+ und Qualität werden ausgelassen, da sie im Rahmen dieses Projekts keinen
+ zusätzlichen Nutzen bringen.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Fahrplan abfragen
+\end_layout
+
+\begin_layout Standard
+Der Benutzer möchte den Fahrplan zwischen Ausgangs- und Zielpunkt zu einem
+ bestimmten Zeitpunkt abfragen.
+ Das System erstellt aus den eingegebenen Daten und den Fahrplaninformationen
+ eine personalisierte Rückmeldung und präsentiert diese dem Benutzer.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename FahrplanAbfragen.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Use-Case Fahrplan abfragen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="14" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="10cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Abschnitt
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Inhalt
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bezeichner
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+UC1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fahrplan abfragen
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Priorität
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Wichtigkeit für Systemerfolg: hoch
+\begin_inset Newline newline
+\end_inset
+
+Technologisches Risiko: hoch
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Kritikalität
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hoch
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Beschreibung
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Der Benutzer fragt den Fahrplan ab.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Auslösendes Ereignis
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Der Benutzer oder Administrator möchte Informationen zum Fahrplan haben.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Akteure
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Benutzer, Administrator
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Vorbedingung
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Keine.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nachbedingung
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Der Benutzer kann eine erneute Fahrplanabfrage starten.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ergebnis
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Der Fahrplan wird nach den 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hauptszenario
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.
+ Der Benutzer oder Administrator gibt seinen Benutzernamen und Passwort
+ ein.
+\end_layout
+
+\begin_layout Plain Layout
+2.
+ Der Benutzer oder Administrator erfragt die Authentifizierung vom System.
+\end_layout
+
+\begin_layout Plain Layout
+3.
+ Das System erstellt eine Authentifikation und übergibt dieses dem Benutzer
+ oder Administrator.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Alternativszenarien
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2a.
+ Der Benutzername oder das Passwort ist inkorrekt.
+\end_layout
+
+\begin_layout Plain Layout
+2a1.
+ Der Benutzer oder Administrator wird aufgefordert seinen Benutzernamen
+ oder Passwort zu überprüfen und erneut einzugeben.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ausnahmeszenarien
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Auslösendes Ereignis: Der Benutzer oder Administrator kann keine Verbindung
+ zum System herstellen.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Use-Case-Spezifikation Benutzer oder Administrator authentifizieren
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Konzept und Architektur
+\end_layout
+
+\begin_layout Section
+Implementierung
+\end_layout
+
+\begin_layout Section
+Verifikation
+\end_layout
+
+\begin_layout Chapter
+Schlussteil
+\end_layout
+
+\begin_layout Section
+Fazit
+\end_layout
+
+\begin_layout Subsection
+Abweichungen von der Aufgabenstellung
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "Seminarbericht"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+\start_of_appendix
+Anhang
+\end_layout
+
+\end_body
+\end_document
