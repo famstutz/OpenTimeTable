@@ -152,6 +152,13 @@ key "Hung2007"
 
 \begin_layout Section
 Anforderungen
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Anforderungen"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -887,6 +894,13 @@ name "fig:Komponentendiagramm"
 
 \begin_layout Subsubsection
 Domänenmodell
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Domänenmodell"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1161,6 +1175,7 @@ status open
 \begin_inset Graphics
 	filename GetConnectionsSequenceDiagram.png
 	scale 50
+	rotateAngle 90
 
 \end_inset
 
@@ -1299,24 +1314,631 @@ name "fig:Verteilungsdiagramm"
 Implementierung
 \end_layout
 
+\begin_layout Standard
+Dieses Kapitel enthält Informationen zur Implementierung der beiden Teile,
+ der Server- und der Clientapplikation.
+ Dabei wird auf einzelne Besonderheiten in der Implementierung hingewiesen
+ sowie die Struktur der Projekte erklärt.
+\end_layout
+
+\begin_layout Standard
+Da sämtlicher Quellcode und die Dokumentation auf GitHub verfügbar
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Siehe 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/famstutz/OpenTimeTable
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ ist wird in diesem Kapitel nur rudimentär auf die eigentliche Implementierung
+ der beiden Applikationen eingegangen.
+\end_layout
+
+\begin_layout Subsection
+OpenTimeTable.Service
+\end_layout
+
+\begin_layout Standard
+Die Serverapplikation ist als WCF Web Service implementiert und besteht
+ aus zwei Teilen.
+ Die Assembly OpenTimeTable.Service.Host enthält die Service Contracts sowie
+ deren Implementierung, die Assembly OpenTimeTable.Model.Contracts enthält
+ das Domänenmodell (siehe Kapitel 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "sub:Domänenmodell"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsection
+OpenTimeTable.Client
+\end_layout
+
+\begin_layout Standard
+Die Clientapplikation ist als Modul für das Content Management Syytem Orchard
+ Project
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Siehe 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.orchardproject.net/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ geschrieben.
+ Orchard bietet ein Plugin-System über Microsofts WebMatrix, welches eine
+ eigene Visual Studio Solution mit dem erstellen Projekt breitstellt.
+ Im Rahmen der Bearbeitung der Seminararbeit habe ich festgestellt, dass
+ gewisse Funktionalitäten von Orchard über die WebMatrix nicht verfügbar
+ sind und deswegen der gesamte Quellcode von Orchard verwendet werden muss
+ um zum Beispiel Service References dem Orchard bekannt zu machen.
+\end_layout
+
+\begin_layout Standard
+Das Modul selber wurde mittels ASP.NET MVC implementiert und verwendet die
+ Assembly OpenTimeTable.Model.Contracts aus dem vorherigen Kapitel um die
+ gesuchten Fahrplaninformationen anzuzeigen.
+\end_layout
+
 \begin_layout Section
 Verifikation
+\end_layout
+
+\begin_layout Standard
+Die Verifikation der implementierten Anforderungen (siehe Kapitel 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "sec:Anforderungen"
+
+\end_inset
+
+) an das System wurde manuell vorgenommen und ist im folgenden Kapitel beschrieb
+en.
+\end_layout
+
+\begin_layout Subsection
+Manuelle Integrationstests
+\end_layout
+
+\begin_layout Standard
+Um die funktionstüchtigkeit des Systems zu überprüfen wurden jeweils drei
+ verschiedene Fahrplanabfragen sowohl auf SBB.ch durchgeführt und parallel
+ dazu in der implementierten Applikation.
+ Sind die angezeigten Fahrplandaten identisch, so wird der jeweilge Testfall
+ als erfüllt betrachtet.
+\end_layout
+
+\begin_layout Subsubsection
+Testfall 1 (Genf - Zürich, 5.
+ Mai 2013, 08:30)
+\end_layout
+
+\begin_layout Standard
+Bei einer Fahrplanabfrage von Genf nach Zürich am 5.
+ Mai 2013 mit Abfahrtszeit 08:30 stellt SBB.ch und OpenTimeTable exakt dasselbe
+ Resultat dar.
+\end_layout
+
+\begin_layout Standard
+Der Testfall 1 ist als erfolgreich zu betrachten.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename TC1_SBB.PNG
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Resultat Testfall 1 SBB.ch
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename TC1_OpenTimeTable.PNG
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Resultat Testfall 1 OpenTimeTable
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Testfall 2 (Ziegelbrücke - Bellinzona, 12.
+ April 2013, 19:15)
+\end_layout
+
+\begin_layout Standard
+Auch bei der Fahrplanabfrage von Ziegelbrücke nach Bellinzona am 12.
+ April 2013 mit Abfahrtszeit 19:15 stellen sowohl SBB.ch als auch OpenTimeTable
+ dieselben Fahrplaninformationen dar.
+\end_layout
+
+\begin_layout Standard
+Der Testfall 2 ist als erfolgreich zu betrachten.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename TC2_SBB.PNG
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Resultat Testfall 2 SBB.ch
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename TC2_OpenTimeTable.PNG
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Resultat Testfall 2 OpenTimeTable
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Testfall 3 (Zürich, Central - Zürich, Sihlpost, 26.
+ Mai 2013, 12:00)
+\end_layout
+
+\begin_layout Standard
+Bei einer innerstädtischen Fahrplanabfrage von Zürich, Central nach Zürich,
+ Sihlpost am 26.
+ Mai 2013 mit Abfahrtszeit 12:00 zeigten sich Unterschiede zwischen der
+ Anzeige von SBB.ch und derjenigen von OpenTimeTable.
+ Im Gegensatz zu den Langstreckenverbindungen scheint SBB.ch bei innerstädtischen
+ Verbindungen die angegegebene Ankunftszeit als spätmöglichste Ankunftszeit
+ zu betrachten.
+ Dies ist jedoch nur auf der Webseite der Fall, verwendet man die iOS-App
+ der SBB so werden andere Fahrplaninformationen dargestellt.
+ 
+\end_layout
+
+\begin_layout Standard
+Der Testfall 3 ist somit als fehlgeschlagen zu betrachten.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename TC3_SBB.PNG
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Resultat Testfall 3 SBB.ch
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename TC3_OpenTimeTable.PNG
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Resultat Testfall 3 OpenTimeTable
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Testresultate
+\end_layout
+
+\begin_layout Standard
+Auch wenn der Testfall 3 (siehe Tabelle 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Testresultate"
+
+\end_inset
+
+) als fehlgeschlagen betrachtet werden muss, lässt sich trotzdem sagen,
+ dass die Verifikation des Systems OpenTimeTable als erfolgreich abgeschlossen
+ betrachten.
+ Der Benutzer erhält auch in Testfall 3 die gewünschten Fahrplaninformationen,
+ es ist dabei auf die Inkonsistenz von SBB.ch in der Anzeige von Verbindungen
+ hinzuweisen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Testfall
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fahrplaninformationen
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Resultat
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Testfall 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Genf - Zürich, 5.
+ Mai 2013, 08:30
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bestanden
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Testfall 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ziegelbrücke - Bellinzona, 12.
+ April 2013, 19:15
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bestanden
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Testfall 3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Zürich, Central - Zürich, Sihlpost, 26.
+ Mai 2013, 12:00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Fehlgeschlagen
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Testresultate
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Testresultate"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
 Schlussteil
 \end_layout
 
+\begin_layout Standard
+Dieses Kapitel enthält abschliessende Betrachtungen im Rückblick der Seminararbe
+it sowie die Abweichungen von der ursprünglich eingereichten Aufgabenstellung.
+\end_layout
+
 \begin_layout Section
 Fazit
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Standard
+Abschliessend lässt sich sagen, dass die Bearbeitung dieser Seminararbeit
+ aufwändiger war, als zuerst angenommen.
+ Die Verwendung von Orchard als CMS-Container hat teilweise einige Steine
+ in den Weg gelegt, die nicht aufgetreten wären, wenn eine eigene Webapplikation
+ auf Basis von ASP.NET MVC erstellt worden wäre und auch der ursprüngliche
+ Plan, die Fahrplandaten als Open Data Service Protocol Service zurückzugeben,
+ der sich dann als unmöglich herausgestellt hat (siehe nächstes Kapitel)
+ hat viel Zeit gekostet.
+\end_layout
+
+\begin_layout Standard
+Nichts desto trotz hat mir diese Seminarbeit gut gefallen, habe ich doch
+ einige Zeit mit dem OData Protokoll und Orchard verbracht, was ich sicher
+ auch in Zukunft wieder einsetzen kann.
+\end_layout
+
+\begin_layout Section
 Abweichungen von der Aufgabenstellung
 \end_layout
 
 \begin_layout Standard
-TDD
+Da der SBB.ch XML-Fahrplan nach einer Anzahl von zurückgegebenen Resultaten
+ alle weiteren Anfragen blockiert, war es nicht möglich Open Data Protocol
+ Services für die Fahrplandaten zu schreiben, da ein OData-Service jeweils
+ die gesamte Menge aller Datensätze zurückgibt und danach eine Einschränkung
+ trifft.
+ Aus diesem Grund wurde anstelle eines OData-Services ein Web Service erstellt.
+\end_layout
+
+\begin_layout Standard
+Die Aufgabenstellung sah vor dass das System mittels TDD erstellt wurde
+ sowie automatisierte Integrationstests umgesetzt werden.
+ In Anbetracht des Kapitels 2 des Reglements Seminararbeit (siehe 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Stern2012"
+
+\end_inset
+
+), welches einen Aufwand von 50 Stunden pro Studenten vorsieht, wurde auf
+ diese Punkte verzichtet, da bereits ohne jegliche automatisierte Testsuite
+ über 50 Stunden aufgewendet wurden.
 \end_layout
 
 \begin_layout Standard
