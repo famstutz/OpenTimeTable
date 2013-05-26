@@ -128,6 +128,7 @@
     </Compile>
     <Compile Include="Views\Home\DisplayTemplates\Time.ascx.cs">
       <DependentUpon>Time.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Home\DisplayTemplates\Time.ascx.designer.cs">
       <DependentUpon>Time.ascx</DependentUpon>

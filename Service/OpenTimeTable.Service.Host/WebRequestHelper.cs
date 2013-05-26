@@ -37,7 +37,8 @@
             stringBuilder.AppendParameter("from", from);
             stringBuilder.AppendParameter("to", to);
             stringBuilder.AppendParameter("via", via);
-            stringBuilder.AppendParameter("dateTime", dateTime);
+            stringBuilder.AppendParameter("date", dateTime, "{0:yyyy-MM-dd}");
+            stringBuilder.AppendParameter("time", dateTime, "{0:HH:mm}");
             stringBuilder.AppendParameter("isArrivalTime", isArrivalTime);
             stringBuilder.AppendParameter("transportations", transportations);
             stringBuilder.AppendParameter("direct", isDirect);
@@ -67,11 +68,11 @@
             }
         }
 
-        private static void AppendParameter(this StringBuilder stringBuilder, string name, DateTime? parameter)
+        private static void AppendParameter(this StringBuilder stringBuilder, string name, DateTime? parameter, string formatString)
         {
             if (parameter.HasValue)
             {
-                stringBuilder.AppendFormat("{0}={1}&", name, parameter);
+                stringBuilder.AppendFormat("{0}={1}&", name, string.Format(formatString, parameter));
             }
         }
 

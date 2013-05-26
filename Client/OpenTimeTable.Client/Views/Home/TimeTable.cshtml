@@ -26,8 +26,7 @@
                 @Html.DisplayFor(modelItem => item.From.Station.Name)<br />
                 @Html.DisplayFor(modelItem => item.To.Station.Name)
             </td>
-            <td>
-                Departure: @Html.DisplayFor(modelItem => item.From.Departure, "Date")<br />
+            <td>Departure: @Html.DisplayFor(modelItem => item.From.Departure, "Date")<br />
                 Arrival: @Html.DisplayFor(modelItem => item.To.Arrival, "Date")
             </td>
             <td>
@@ -41,8 +40,17 @@
                 @string.Join(", ", item.Products.Select(p => p).ToArray())
             </td>
             <td>
-                1. <img src="@Url.Content(string.Format("~/Modules/OpenTimeTable.Client/Content/icon_{0}.png", item.Capacity1st))"/><br />
-                2. <img src="@Url.Content(string.Format("~/Modules/OpenTimeTable.Client/Content/icon_{0}.png", item.Capacity2nd))"/>
+                @if (item.Capacity1st.HasValue)
+                {
+                    <span>1.
+                        <img src="@Url.Content(string.Format("~/Modules/OpenTimeTable.Client/Content/icon_{0}.png", item.Capacity1st))"/><br />
+                    </span>
+                }
+                @if (item.Capacity2nd.HasValue)
+                {
+                    <span>2.
+                        <img src="@Url.Content(string.Format("~/Modules/OpenTimeTable.Client/Content/icon_{0}.png", item.Capacity2nd))"/></span>
+                }
             </td>
         </tr>
     }
