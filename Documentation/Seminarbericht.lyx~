@@ -313,6 +313,13 @@ key "Pohl2011"
 
 \begin_layout Subsubsection
 Fahrplan abfragen
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Fahrplan-abfragen"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -614,7 +621,7 @@ Hauptszenario
 
 \begin_layout Plain Layout
 2.
- Der Benutzer gibt den Zielort an.
+ Der Benutzer gibt das Ziel an.
 \end_layout
 
 \begin_layout Plain Layout
@@ -645,14 +652,27 @@ Alternativszenarien
 \begin_inset Text
 
 \begin_layout Plain Layout
+1a.
+ Der Ausgangspunkt ist unbekannt.
+\end_layout
+
+\begin_layout Plain Layout
+1a1.
+ Dem Benutzer wird eine Auswahlliste von passenden Ausgangspunkten angezeigt.
+ Er wird aufgefordert einen der Ausgangspunkte auszuwählen oder erneut einen
+ Ausgangspunkt einzugeben.
+\end_layout
+
+\begin_layout Plain Layout
 2a.
- Der Benutzername oder das Passwort ist inkorrekt.
+ Das Ziel ist unbekannt.
 \end_layout
 
 \begin_layout Plain Layout
 2a1.
- Der Benutzer oder Administrator wird aufgefordert seinen Benutzernamen
- oder Passwort zu überprüfen und erneut einzugeben.
+ Dem Benutzer wird eine Auswahlliste von passenden Zielen angezeigt.
+ Er wird aufgefordert eines der Ziele auszuwählen oder erneut ein Ziel einzugebe
+n.
 \end_layout
 
 \end_inset
@@ -706,6 +726,575 @@ Use-Case-Spezifikation Fahrplan abfragen
 Konzept und Architektur
 \end_layout
 
+\begin_layout Standard
+Die Konzeptphase
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+auch Designphase genannt
+\end_layout
+
+\end_inset
+
+ des Wasserfallmodells behandelt die Entwicklung eines vollständigen und
+ umfassenden Lösungskonzepts auf Basis der dokumentierten Anforderungen.
+ Zuerst wird das System aus der Bausteinperspektive betrachtet, es wird
+ von der Komponentenebene bis zur Klassenebene das System modelliert und
+ die Systemarchitektur festgelegt.
+ Als weitere Sicht wird die Laufzeitsicht und die Verteilungssicht des Systems
+ beleuchtet und spezifziert.
+\end_layout
+
+\begin_layout Subsection
+Bausteinsicht
+\end_layout
+
+\begin_layout Standard
+Nach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Starke2011"
+
+\end_inset
+
+ und 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hruschka2013"
+
+\end_inset
+
+ lassen sich unter dem Begriff 
+\begin_inset Quotes eld
+\end_inset
+
+Bausteine
+\begin_inset Quotes erd
+\end_inset
+
+ sämtliche Software- oder Implementierungskomponenten zusammenfassen, die
+ letztendlich Abstraktionen von Quellcode darstellen.
+ Dazu gehören Klassen, Prozeduren, Programme, Pakete, Komponenten (nach
+ der UML-Definition) oder Subsysteme.
+\end_layout
+
+\begin_layout Standard
+Die Bausteinsicht bildet die Aufgaben des System auf Software-Bausteine
+ oder -Komponenten ab.
+ Diese Sicht macht Struktur und Zusammenhänge zwischen den Bausteinen der
+ Architektur explizit.
+ Bausteinsichten zeigen die statischen Aspekte des Systemes und entsprechen
+ in dieser Hinsicht den konventionellen Implementierungsmodellen.
+\end_layout
+
+\begin_layout Subsubsection
+Komponentendiagramm
+\end_layout
+
+\begin_layout Standard
+Das Komponentendigramm in Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Komponentendiagramm"
+
+\end_inset
+
+ stellt das System OpenTimeTable aus der Vogelperspektive dar und ist die
+ höchstabstrahierte Ansicht der Bausteinsicht, die in diesem Projekt verfügbar
+ ist.
+ 
+\end_layout
+
+\begin_layout Standard
+Die Fahrplan-Webseite SBB.ch stellt einen XML Fahrplan zur Verfügung welcher
+ von der Serverapplikation genutzt wird um Fahrplandaten aufzubereiten und
+ danach der Clientapplikation weiterzugeben.
+\end_layout
+
+\begin_layout Standard
+Der OpenTimeTable.Service bezeichnet die Serverapplikation des Systems und
+ implementiert die beiden Schnittstellen
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Im Zusammenhang mit WCF auch Service Contracts genannt.
+\end_layout
+
+\end_inset
+
+ IConnectionService und ILocationService (siehe Kapitel 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "sub:Service-Contracts"
+
+\end_inset
+
+).
+ Er stellt die Schnittstellen als Webservices den Clientapplikationen zur
+ Verfügung.
+ 
+\end_layout
+
+\begin_layout Standard
+Die Clientapplikationen OpenTimeTable.Client die als Modul innerhalb von
+ Orchard realisiert wird, greift auf die Serverapplikation über die beiden
+ Schnittstellen zu und stellt die zurückgegeben Daten dem Benutzer dar.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ComponentModel.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Komponentendiagramm
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Komponentendiagramm"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Domänenmodell
+\end_layout
+
+\begin_layout Standard
+Das Domänenmodell (siehe Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Klassendiagramm-Domänenmodell"
+
+\end_inset
+
+) umfasst nur die Klassen der Objekte, die über die Serviceschnittstelle
+ von der Client- an die Serverapplikation beziehungsweise umgekehrt übertragen
+ werden.
+ 
+\end_layout
+
+\begin_layout Standard
+OpenTimeTable verwendet ein vergleichsweise simples und selbsterklärendes
+ Domänenmodell wenn man schon einemal ein Fahrplananzeigesystem wie SBB.ch
+ oder ähnliche genutzt hat.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Contracts.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Klassendiagramm Domänenmodell
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Klassendiagramm-Domänenmodell"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Service Contracts
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Service-Contracts"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ein Service Contract spezifiziert eine Schnittstelle zur Kommunikation verschied
+ener Applikationen innerhalb eines verteilten Systems.
+ Häufig werden diese Service Contracts als Webservices angeboten, da sie
+ dadurch plattform- und frameworkunabhängig genutzt werden können.
+ 
+\end_layout
+
+\begin_layout Standard
+Typischerweise umfasst ein Service Contract mehrere Operationen, deren Rückgabew
+erte als XML-Fragmente an die konsumierende Applikation zurückgegeben werden.
+ Ausserdem ist ein Service Contract per Definition grundsätzlich zustandslos,
+ er behandelt mehrere Anfragen (auch desselben Auftraggebers) immer als
+ unabhängige Transaktionen.
+ Anfragen werden ohne Bezug zu früheren, vorhergegeganen Anfragen behandelt
+ und es werden auch keine Sitzungsinformationen ausgetauscht.
+\end_layout
+
+\begin_layout Paragraph
+ILocationService
+\end_layout
+
+\begin_layout Standard
+Die in Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Klassendiagramm-ILocationService"
+
+\end_inset
+
+ gezeigte Schnittstelle ILocationService stellt Funktionalitäten zur Verfügung
+ über welche Haltestellen und Bahnhöfe abgefragt werden können.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename LocationService.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Klassendiagramm ILocationService
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Klassendiagramm-ILocationService"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+IConnectionService
+\end_layout
+
+\begin_layout Standard
+Der IConnectionService in Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Klassendiagramm-IConnectionServi"
+
+\end_inset
+
+ gibt Verbindungen zurück, welche über verschiedene Parameter gesucht werden
+ können.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ConnectionService.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Klassendiagramm IConnectionService
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Klassendiagramm-IConnectionServi"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Laufzeitsicht
+\end_layout
+
+\begin_layout Standard
+Die Laufzeitsicht beschreibt, welche Bestandteile des Systems zur Laufzeit
+ existieren und wie diese zusammenwirken (nach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Starke2011"
+
+\end_inset
+
+).
+ Dabei kommen wichtige Aspekte des Systembetriebs ins Spiel, die beispielsweise
+ den Systemstart, die Laufzeitkonfiguration oder die Administration des
+ Systems betreffen.
+\end_layout
+
+\begin_layout Standard
+Darüber hinaus dokumentiert die Laufzeitsicht, wie Laufzeitkomponenten sich
+ aus Instanzen von Implementierungsbausteinen zusammensetzen.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Fahrplan abfragen
+\end_layout
+
+\begin_layout Standard
+Das Sequenzdiagramm in Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Sequenzdiagramm-Fahrplan-abfrage"
+
+\end_inset
+
+ entspricht dem Use-Case Fahrplan abfragen (siehe Kapitel 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "sub:Fahrplan-abfragen"
+
+\end_inset
+
+).
+ 
+\end_layout
+
+\begin_layout Standard
+Der Benutzer greift auf dei Connection Request View über das MVC-Pattern
+ von Orchard zu und gibt die gewünschten Verbindungsdaten für den Fahrplan
+ ein.
+ Danach greift der TimeTableController des Clients auf den Server zu und
+ generiert anhand der vom Benutzer übermittelten Daten auf dem Web Service
+ von SBB.ch zu, formatiert die zurückgelieferten Daten um und präsentiert
+ diese in der Time Table Result View dem Benutzer.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename GetConnectionsSequenceDiagram.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Sequenzdiagramm Fahrplan abfragen
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Sequenzdiagramm-Fahrplan-abfrage"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Verteilungssicht
+\end_layout
+
+\begin_layout Standard
+Nach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Starke2011"
+
+\end_inset
+
+ beschreibt die Verteilungssicht die Ablaufumgebung des Systems in Form
+ von Hardwarekomponenten (wie Prozessoren, Speicher, Netzwerk, Router und
+ Firewalls) sowie den beteiligten Protokollen.
+ In der Infrastruktursicht können die Leistungsdaten und Parameter der beteiligt
+en Elemente dargestellt werden.
+ Ausserdem werden zusätzlich Betriebssysteme oder externe Systeme aufgenommen.
+\end_layout
+
+\begin_layout Standard
+Die Verteilungssicht ist von grosser Beduetung für die Betreiber des Systems,
+ die Hardwarearchitekten, das Entwicklungsteam sowie Management und Projektleitu
+ng (gemäss 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hruschka2012"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsubsection
+Verteilungsdiagramm
+\end_layout
+
+\begin_layout Standard
+Die Verteilungssicht dieser Projektdokumentation enthält nur ein sehr rudimentär
+ ausgearbeitetes Verteilungsdiagramm (siehe Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Verteilungsdiagramm"
+
+\end_inset
+
+).
+ Dies, da kein konkretes Verteilungsszenario der Applikation innerhalb des
+ Projekts geplant wurde.
+ Das Projekt beeinhaltet die Erarbeitung des Konzepts sowie die konkrete
+ Implementierung der Applikation ohne jedoch auf die Verteilung des Systems
+ einzugehen.
+ 
+\end_layout
+
+\begin_layout Standard
+Zu beachten ist, dass der OpenTimeTable.Service und der OpenTimeTable.Client
+ beide imselben IIS und auf dem selben Server laufen könnten, dies jedoch
+ auch unterschiedliche Rechner sein könnten.
+ Der OpenTimeTable.Client wird als Modul von Orchard implementiert und wird
+ deswegen immer innerhalb einer Orchard-Instanz angeboten.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename DeploymentModel.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Verteilungsdiagramm
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Verteilungsdiagramm"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Implementierung
 \end_layout
@@ -724,6 +1313,10 @@ Fazit
 
 \begin_layout Subsection
 Abweichungen von der Aufgabenstellung
+\end_layout
+
+\begin_layout Standard
+TDD
 \end_layout
 
 \begin_layout Standard

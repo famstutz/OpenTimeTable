@@ -152,6 +152,13 @@ key "Hung2007"
 
 \begin_layout Section
 Anforderungen
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Anforderungen"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1303,20 +1310,101 @@ Implementierung
 Verifikation
 \end_layout
 
+\begin_layout Standard
+Die Verifikation der implementierten Anforderungen (siehe Kapitel 
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "sec:Anforderungen"
+
+\end_inset
+
+) an das System wurde manuell vorgenommen und ist im folgenden Kapitel beschrieb
+en.
+\end_layout
+
+\begin_layout Subsection
+Manuelle Integrationstests
+\end_layout
+
+\begin_layout Standard
+Um die funktionstüchtigkeit des Systems zu überprüfen wurden jeweils drei
+ verschiedene Fahrplanabfragen sowohl auf SBB.ch durchgeführt und parallel
+ dazu in der implementierten Applikation.
+ Sind die angezeigten Fahrplandaten identisch, so wird der jeweilge Testfall
+ als erfüllt betrachtet.
+\end_layout
+
+\begin_layout Subsubsection
+Testfall 1 (Genf - Zürich, 05.
+ Mai 2013, 08:30)
+\end_layout
+
+\begin_layout Subsubsection
+Testfall 2 (Ziegelbrücke - Bellinzona, 12.
+ April 2013, 19:15)
+\end_layout
+
+\begin_layout Subsubsection
+Testfall 3 (Zürich, Central - Zürich, Sihlpost, 26.
+ Mai 2013, 12:00)
+\end_layout
+
 \begin_layout Chapter
 Schlussteil
+\end_layout
+
+\begin_layout Standard
+Dieses Kapitel enthält abschliessende Betrachtungen im Rückblick der Seminararbe
+it sowie die Abweichungen von der ursprünglich eingereichten Aufgabenstellung.
 \end_layout
 
 \begin_layout Section
 Fazit
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Standard
+Abschliessend lässt sich sagen, dass die Bearbeitung dieser Seminararbeit
+ aufwändiger war, als zuerst angenommen.
+ Die Verwendung von Orchard als CMS-Container hat teilweise einige Steine
+ in den Weg gelegt, die nicht aufgetreten wären, wenn eine eigene Webapplikation
+ auf Basis von ASP.NET MVC erstellt worden wäre und auch der ursprüngliche
+ Plan, die Fahrplandaten als Open Data Service Protocol Service zurückzugeben,
+ der sich dann als unmöglich herausgestellt hat (siehe nächstes Kapitel)
+ hat viel Zeit gekostet.
+\end_layout
+
+\begin_layout Standard
+Nichts desto trotz hat mir diese Seminarbeit gut gefallen, habe ich doch
+ einige Zeit mit dem OData Protokoll und Orchard verbracht, was ich sicher
+ auch in Zukunft wieder einsetzen kann.
+\end_layout
+
+\begin_layout Section
 Abweichungen von der Aufgabenstellung
 \end_layout
 
 \begin_layout Standard
-TDD
+Da der SBB.ch XML-Fahrplan nach einer Anzahl von zurückgegebenen Resultaten
+ alle weiteren Anfragen blockiert, war es nicht möglich Open Data Protocol
+ Services für die Fahrplandaten zu schreiben, da ein OData-Service jeweils
+ die gesamte Menge aller Datensätze zurückgibt und danach eine Einschränkung
+ trifft.
+ Aus diesem Grund wurde anstelle eines OData-Services ein Web Service erstellt.
+\end_layout
+
+\begin_layout Standard
+Die Aufgabenstellung sah vor dass das System mittels TDD erstellt wurde
+ sowie automatisierte Integrationstests umgesetzt werden.
+ In Anbetracht des Kapitels 2 des Reglements Seminararbeit (siehe 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Stern2012"
+
+\end_inset
+
+), welches einen Aufwand von 50 Stunden pro Studenten vorsieht, wurde auf
+ diese Punkte verzichtet, da bereits ohne jegliche automatisierte Testsuite
+ über 50 Stunden aufgewendet wurden.
 \end_layout
 
 \begin_layout Standard
