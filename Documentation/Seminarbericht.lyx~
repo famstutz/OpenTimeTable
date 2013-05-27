@@ -114,10 +114,28 @@ Auftrag
 Im Rahmen des Seminar soll selbstständig ein Projekt zu einem ausgewählten
  Thema erarbeitet werden.
  Diese Seminararbeit hatte ursprünglich zum Ziel den SBB Fahrplan mittels
- des Open Data Protocols zur Verfügung zu stellen.
+ des Open Data Protocols
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "Open Data Protocol"
+description "a"
+
+\end_inset
+
+ zur Verfügung zu stellen.
  Auf Grund der limitierenden SBB.ch Fahrplan-Webseite wurde die Aufgabenstellung
  so abgeändert, das anstelle eines OData Services ein Web Service zur Verfügung
  gestellt wird.
+\end_layout
+
+\begin_layout Standard
+Das Seminarresultat besteht aus einer Fahrplanwebseite analog SBB.ch, welche
+ als Modul in Orchard Project implementiert ist sowie einem Web Service,
+ über welchen Fahrplaninformationen angefragt werden können.
+ Die Fahrplanwebseite benutzt diesen Web Service um die gewünschten Fahrplaninfo
+rmationen anzuzeigen.
+ Der Web Service selbst greift auf SBB.ch um die Fahrplaninformationen weiterzuge
+ben.
 \end_layout
 
 \begin_layout Chapter
@@ -134,12 +152,12 @@ key "Kuhrmann2012"
 
 \end_inset
 
- ist das Wasserfallmodell insbesondere für einfach Projekte mit klar definierten
- Anforderungen einsetzbar.
+ ist das Wasserfallmodell insbesondere für einfache Projekte mit klar definierte
+n Anforderungen einsetzbar.
  Da der Umfang dieser Seminararbeit überschaubar ist und der bearbeitende
- Student der einzige Stakeholder ist, hat es sich als ideales Vorgehensmodell
- für die Bearbeitung von Seminararbeiten herausgestellt.
- Die einzelnen Unterkapitel des Hauptteils folgen auch Modell (siehe auch
+ Student der einzige Stakeholder ist hat sich das Wasserfallmodell als ideales
+ Vorgehensmodell für die Bearbeitung von Seminararbeiten herausgestellt.
+ Die einzelnen Unterkapitel des Hauptteils folgen dem Modell (siehe auch
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -164,7 +182,7 @@ name "sec:Anforderungen"
 \begin_layout Standard
 Der erste Schritt des Wasserfallmodells besteht darin die Anforderungen
  an das zu entwickelnde System festzuhalten.
- Aus Gründen der Einfachheit wurde dabei nur genau ein Use-Case identifiziert,
+ Aus Gründen der Einfachheit wurde dabei ein einziger Use-Case identifiziert,
  der im Rahmen dieser Arbeit implementiert werden wird (siehe Kapitel 
 \begin_inset CommandInset ref
 LatexCommand vref
@@ -177,7 +195,7 @@ reference "sub:Use-Case-Spezifikation"
 \end_layout
 
 \begin_layout Standard
-Um überhaupt erst Use-Cases spezifizieren zu können beschreibt das erste
+Um überhaupt erst Use-Cases spezifizieren zu können, beschreibt das erste
  Unterkapitel den Systemkontext des geplanten Systems OpenTimeTable.
 \end_layout
 
@@ -210,7 +228,7 @@ Der Ursprung der Anforderungen des Systems liegt im Systemkontext des geplanten
  Systems.
  Aus diesem Grund wird der Systemkontext vor Erhebung und Dokumentierung
  der Anforderungen festgelegt.
- Der Systemkontext des Systems CRM-Applikation ist in Abbildung 
+ Der Systemkontext des Systems OpenTimeTable ist in Abbildung 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Systemkontext"
@@ -333,7 +351,8 @@ name "sub:Fahrplan-abfragen"
 Der Benutzer möchte den Fahrplan zwischen Ausgangs- und Zielpunkt zu einem
  bestimmten Zeitpunkt abfragen.
  Das System erstellt aus den eingegebenen Daten und den Fahrplaninformationen
- eine personalisierte Rückmeldung und präsentiert diese dem Benutzer.
+ einen personalisierten und individuellen Fahrplan und zeigt diesen dem
+ Benutzer an.
 \end_layout
 
 \begin_layout Standard
@@ -522,7 +541,7 @@ Auslösendes Ereignis
 \begin_inset Text
 
 \begin_layout Plain Layout
-Der Benutzer oder Administrator möchte Informationen zum Fahrplan haben.
+Der Benutzer möchte Informationen zum Fahrplan haben.
 \end_layout
 
 \end_inset
@@ -542,7 +561,7 @@ Akteure
 \begin_inset Text
 
 \begin_layout Plain Layout
-Benutzer, Administrator
+Benutzer
 \end_layout
 
 \end_inset
@@ -562,7 +581,7 @@ Vorbedingung
 \begin_inset Text
 
 \begin_layout Plain Layout
-Keine.
+Keine
 \end_layout
 
 \end_inset
@@ -787,7 +806,7 @@ Bausteine
 \end_layout
 
 \begin_layout Standard
-Die Bausteinsicht bildet die Aufgaben des System auf Software-Bausteine
+Die Bausteinsicht bildet die Aufgaben des System auf Software-Bausteinen
  oder -Komponenten ab.
  Diese Sicht macht Struktur und Zusammenhänge zwischen den Bausteinen der
  Architektur explizit.
@@ -826,7 +845,7 @@ Der OpenTimeTable.Service bezeichnet die Serverapplikation des Systems und
 status open
 
 \begin_layout Plain Layout
-Im Zusammenhang mit WCF auch Service Contracts genannt.
+im Zusammenhang mit WCF auch Service Contracts genannt
 \end_layout
 
 \end_inset
@@ -839,13 +858,13 @@ reference "sub:Service-Contracts"
 \end_inset
 
 ).
- Er stellt die Schnittstellen als Webservices den Clientapplikationen zur
+ Er stellt die Schnittstellen als Webservices der Clientapplikation zur
  Verfügung.
  
 \end_layout
 
 \begin_layout Standard
-Die Clientapplikationen OpenTimeTable.Client die als Modul innerhalb von
+Die Clientapplikationen OpenTimeTable.Client, die als Modul innerhalb von
  Orchard realisiert wird, greift auf die Serverapplikation über die beiden
  Schnittstellen zu und stellt die zurückgegeben Daten dem Benutzer dar.
 \end_layout
@@ -919,8 +938,8 @@ reference "fig:Klassendiagramm-Domänenmodell"
 
 \begin_layout Standard
 OpenTimeTable verwendet ein vergleichsweise simples und selbsterklärendes
- Domänenmodell wenn man schon einemal ein Fahrplananzeigesystem wie SBB.ch
- oder ähnliche genutzt hat.
+ Domänenmodell, das für jeden Benutzer eines Fahrplaninformationssystems
+ wie SBB.ch ohne weitere Erklärung verständlich sein sollte.
 \end_layout
 
 \begin_layout Standard
@@ -1156,13 +1175,14 @@ reference "sub:Fahrplan-abfragen"
 \end_layout
 
 \begin_layout Standard
-Der Benutzer greift auf dei Connection Request View über das MVC-Pattern
+Der Benutzer greift auf die Connection Request View über das MVC-Pattern
  von Orchard zu und gibt die gewünschten Verbindungsdaten für den Fahrplan
  ein.
  Danach greift der TimeTableController des Clients auf den Server zu und
- generiert anhand der vom Benutzer übermittelten Daten auf dem Web Service
- von SBB.ch zu, formatiert die zurückgelieferten Daten um und präsentiert
- diese in der Time Table Result View dem Benutzer.
+ generiert anhand der vom Benutzer übermittelten Daten einen SOAP-Request.
+ Der SOAP-Request wird an den Web Server von SBB.ch gesendet, die Response
+ wird vom Server umformatiert und dem Client zurückgegeben, welcher diese
+ in der Time Table Result View dem Benutzer präsentiert.
 \end_layout
 
 \begin_layout Standard
@@ -1232,7 +1252,7 @@ Die Verteilungssicht ist von grosser Beduetung für die Betreiber des Systems,
 ng (gemäss 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Hruschka2012"
+key "Hruschka2013"
 
 \end_inset
 
@@ -1263,8 +1283,8 @@ reference "fig:Verteilungsdiagramm"
 
 \begin_layout Standard
 Zu beachten ist, dass der OpenTimeTable.Service und der OpenTimeTable.Client
- beide imselben IIS und auf dem selben Server laufen könnten, dies jedoch
- auch unterschiedliche Rechner sein könnten.
+ beide im selben IIS und damit auf dem selben Server laufen könnten, dies
+ jedoch auch unterschiedliche Rechner sein könnten.
  Der OpenTimeTable.Client wird als Modul von Orchard implementiert und wird
  deswegen immer innerhalb einer Orchard-Instanz angeboten.
 \end_layout
@@ -1371,7 +1391,7 @@ OpenTimeTable.Client
 \end_layout
 
 \begin_layout Standard
-Die Clientapplikation ist als Modul für das Content Management Syytem Orchard
+Die Clientapplikation ist als Modul für das Content Management System Orchard
  Project
 \begin_inset Foot
 status open
@@ -1396,14 +1416,14 @@ http://www.orchardproject.net/
  geschrieben.
  Orchard bietet ein Plugin-System über Microsofts WebMatrix, welches eine
  eigene Visual Studio Solution mit dem erstellen Projekt breitstellt.
- Im Rahmen der Bearbeitung der Seminararbeit habe ich festgestellt, dass
- gewisse Funktionalitäten von Orchard über die WebMatrix nicht verfügbar
- sind und deswegen der gesamte Quellcode von Orchard verwendet werden muss
- um zum Beispiel Service References dem Orchard bekannt zu machen.
+ Im Rahmen der Bearbeitung der Seminararbeit wurde jedoch festgestellt,
+ dass gewisse Funktionalitäten von Orchard über die WebMatrix nicht verfügbar
+ sind und deswegen der gesamte Quellcode von Orchard verwendet werden muss,
+ um zum Beispiel Service References der Orchard-Instanz bekannt zu machen.
 \end_layout
 
 \begin_layout Standard
-Das Modul selber wurde mittels ASP.NET MVC implementiert und verwendet die
+Das Modul selber wird mittels ASP.NET MVC implementiert und verwendet die
  Assembly OpenTimeTable.Model.Contracts aus dem vorherigen Kapitel um die
  gesuchten Fahrplaninformationen anzuzeigen.
 \end_layout
@@ -1426,12 +1446,18 @@ en.
 
 \begin_layout Subsection
 Manuelle Integrationstests
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Manuelle-Integrationstests"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Um die funktionstüchtigkeit des Systems zu überprüfen wurden jeweils drei
- verschiedene Fahrplanabfragen sowohl auf SBB.ch durchgeführt und parallel
- dazu in der implementierten Applikation.
+Um die Funktionstüchtigkeit des Systems zu überprüfen wurden drei verschiedene
+ Fahrplanabfragen sowohl auf SBB.ch wie auch in OpenTimeTable durchgeführt.
  Sind die angezeigten Fahrplandaten identisch, so wird der jeweilge Testfall
  als erfüllt betrachtet.
 \end_layout
@@ -1448,7 +1474,7 @@ Bei einer Fahrplanabfrage von Genf nach Zürich am 5.
 \end_layout
 
 \begin_layout Standard
-Der Testfall 1 ist als erfolgreich zu betrachten.
+Der Testfall 1 ist somit als erfolgreich zu betrachten.
 \end_layout
 
 \begin_layout Standard
@@ -1533,7 +1559,7 @@ Auch bei der Fahrplanabfrage von Ziegelbrücke nach Bellinzona am 12.
 \end_layout
 
 \begin_layout Standard
-Der Testfall 2 ist als erfolgreich zu betrachten.
+Der Testfall 2 ist somit als erfolgreich zu betrachten.
 \end_layout
 
 \begin_layout Standard
@@ -1620,12 +1646,20 @@ Bei einer innerstädtischen Fahrplanabfrage von Zürich, Central nach Zürich,
  Verbindungen die angegegebene Ankunftszeit als spätmöglichste Ankunftszeit
  zu betrachten.
  Dies ist jedoch nur auf der Webseite der Fall, verwendet man die iOS-App
- der SBB so werden andere Fahrplaninformationen dargestellt.
+ der SBB so werden dieselben Fahrplaninformationen wie auf OpenTimeTable
+ dargestellt.
  
 \end_layout
 
 \begin_layout Standard
-Der Testfall 3 ist somit als fehlgeschlagen zu betrachten.
+Der Testfall 3 ist auf Grund der Definition in Kapitel 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Manuelle-Integrationstests"
+
+\end_inset
+
+ somit als fehlgeschlagen zu betrachten.
 \end_layout
 
 \begin_layout Standard
@@ -1712,7 +1746,7 @@ reference "tab:Testresultate"
 
 ) als fehlgeschlagen betrachtet werden muss, lässt sich trotzdem sagen,
  dass die Verifikation des Systems OpenTimeTable als erfolgreich abgeschlossen
- betrachten.
+ wurde.
  Der Benutzer erhält auch in Testfall 3 die gewünschten Fahrplaninformationen,
  es ist dabei auf die Inkonsistenz von SBB.ch in der Anzeige von Verbindungen
  hinzuweisen.
@@ -1888,8 +1922,9 @@ Schlussteil
 \end_layout
 
 \begin_layout Standard
-Dieses Kapitel enthält abschliessende Betrachtungen im Rückblick der Seminararbe
-it sowie die Abweichungen von der ursprünglich eingereichten Aufgabenstellung.
+Dieses Kapitel enthält abschliessende Betrachtungen im Rückblick auf die
+ Seminararbeit sowie die Abweichungen von der ursprünglich eingereichten
+ Aufgabenstellung.
 \end_layout
 
 \begin_layout Section
@@ -1901,16 +1936,16 @@ Abschliessend lässt sich sagen, dass die Bearbeitung dieser Seminararbeit
  aufwändiger war, als zuerst angenommen.
  Die Verwendung von Orchard als CMS-Container hat teilweise einige Steine
  in den Weg gelegt, die nicht aufgetreten wären, wenn eine eigene Webapplikation
- auf Basis von ASP.NET MVC erstellt worden wäre und auch der ursprüngliche
- Plan, die Fahrplandaten als Open Data Service Protocol Service zurückzugeben,
- der sich dann als unmöglich herausgestellt hat (siehe nächstes Kapitel)
- hat viel Zeit gekostet.
+ auf Basis von ASP.NET MVC erstellt worden wäre.
+ Auch der ursprüngliche Plan, die Fahrplandaten als Open Data Service Protocol
+ Service zurückzugeben, der sich dann als unmöglich herausgestellt hat (siehe
+ nächstes Kapitel), hat viel Zeit gekostet.
 \end_layout
 
 \begin_layout Standard
 Nichts desto trotz hat mir diese Seminarbeit gut gefallen, habe ich doch
- einige Zeit mit dem OData Protokoll und Orchard verbracht, was ich sicher
- auch in Zukunft wieder einsetzen kann.
+ einige Zeit mit dem OData Protokoll und dem Orchard Project verbracht,
+ was ich sicher auch in Zukunft wieder einsetzen kann.
 \end_layout
 
 \begin_layout Section
@@ -1921,14 +1956,15 @@ Abweichungen von der Aufgabenstellung
 Da der SBB.ch XML-Fahrplan nach einer Anzahl von zurückgegebenen Resultaten
  alle weiteren Anfragen blockiert, war es nicht möglich Open Data Protocol
  Services für die Fahrplandaten zu schreiben, da ein OData-Service jeweils
- die gesamte Menge aller Datensätze zurückgibt und danach eine Einschränkung
- trifft.
+ die gesamte Menge aller Objekte zurückgibt und der Konsument des Services
+ danach eine Einschränkung trifft, welches Untermenge der gesamten Objekten
+ ihn interessieren.
  Aus diesem Grund wurde anstelle eines OData-Services ein Web Service erstellt.
 \end_layout
 
 \begin_layout Standard
-Die Aufgabenstellung sah vor dass das System mittels TDD erstellt wurde
- sowie automatisierte Integrationstests umgesetzt werden.
+Die Aufgabenstellung sah auch vor, dass das System mittels TDD erstellt
+ wird sowie automatisierte Integrationstests umgesetzt werden.
  In Anbetracht des Kapitels 2 des Reglements Seminararbeit (siehe 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1936,25 +1972,102 @@ key "Stern2012"
 
 \end_inset
 
-), welches einen Aufwand von 50 Stunden pro Studenten vorsieht, wurde auf
- diese Punkte verzichtet, da bereits ohne jegliche automatisierte Testsuite
- über 50 Stunden aufgewendet wurden.
+), welches einen Aufwand für die Seminararbeit von 50 Stunden pro Studenten
+ vorsieht, wurde auf diese Punkte verzichtet, da bereits ohne automatisierte
+ Testsuite über 50 Stunden für die Bearbeitung dieser Seminararbeit aufgewendet
+ wurden.
+\end_layout
+
+\begin_layout Chapter*
+\start_of_appendix
+Glossar
+\end_layout
+
+\begin_layout Description
+ASP.NET ASP.NET ist ein Applikationsframework für Webapplikation und das Erzeugen
+ von dynamischen Websites.
+\end_layout
+
+\begin_layout Description
+CMS Ein Content Management System (kurz CMS) ist eine Applikation die das
+ Erstellen, Bearbeiten, Organisieren und Publizeren von Inhalten über eine
+ zentrale Schnittstelle.
+\end_layout
+
+\begin_layout Description
+GitHub GitHub ist ein webbasierter Service für Softwareentwicklungsprojekte,
+ welches das Git Versionsverwaltungssystem nutzen.
+\end_layout
+
+\begin_layout Description
+IIS Die Internet Information Services (kurz IIS) ist ein Webserver, welcher
+ mit Microsoft Windows mitgeliefert wird und die Standardlösung für das
+ Bereitstellen von ASP.NET-basierten Webseiten im Internet darstellt.
+\end_layout
+
+\begin_layout Description
+iOS iOS ist ein mobiles Betriebssystem das von Apple für das iPhone und
+ das iPad entwickelt wurde.
+\end_layout
+
+\begin_layout Description
+OData Das Open Data Protocol (kurz OData) ist ein Datenzugriffsprotokoll,
+ um Daten abzufragen und zu aktualisieren.
+\end_layout
+
+\begin_layout Description
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+Orchard Project
+\end_layout
+
+\end_inset
+
+ Das Orchard Project ist ein frei verfügbares und Open-Source CMS das in
+ ASP.NET unter Verwendung des ASP.NET MVC Frameworks geschrieben wurde.
+\end_layout
+
+\begin_layout Description
+MVC Model-View-Controller (kurz MVC) ist ein Softwarearchitekturpattern
+ welches die Informationsrepräsentation von der dem Benutzer möglichen Interakti
+on entkoppelt.
+\end_layout
+
+\begin_layout Description
+SOAP Das Simple Object Access Protocol (kurz SOAP) ist eine Protokollspezifikati
+on für das austuaschen von strukturierten Informationen über Web Services.
+\end_layout
+
+\begin_layout Description
+TDD Testgetriebene Entwicklung (englisch kurz TDD) ist ein Softwareentwicklungsp
+rozess das auf der Wiederholung eines sehr kurzen Entwicklungszyklus beruht:
+ Schreiben eines Testcases, minimalen Code um das Testcase zu befriedigen,
+ Refactoring.
+\end_layout
+
+\begin_layout Description
+WCF Die Windows Communication Foundation (kurz WCF) ist eine Laufzeitumgebung
+ und APIs im .NET Framework für das Entwickeln von verbundenen, serviceorientiert
+en Applikationen.
+\end_layout
+
+\begin_layout Description
+WebMatrix Die Microsoft WebMatrix ist ein Tool um Webseiten über die Cloud
+ zu Erstellen, Verteilen und Unterhalten.
 \end_layout
 
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "Seminarbericht"
-options "plain"
+options "plainnat"
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Chapter
-\start_of_appendix
-Anhang
 \end_layout
 
 \end_body
