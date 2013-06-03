@@ -1,0 +1,174 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass scrartcl
+\use_default_options true
+\maintain_unincluded_children false
+\language german-ch
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+SBB Fahrplan als Web Service
+\end_layout
+
+\begin_layout Subtitle
+Zusammenfassung
+\end_layout
+
+\begin_layout Author
+Florian Amstutz <
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+florian@amstutz.nu
+\end_layout
+
+\end_inset
+
+>
+\end_layout
+
+\begin_layout Standard
+Das Seminar Webprojekte mit ASP.NET wird im Rahmen des Wahlpflichtmoduls
+ Programmierung mit dem .NET Framework besucht und hat die selbstständige
+ Formulierung und Lösung eines Projekts mit ASP.NET zum Ziel hat.
+\end_layout
+
+\begin_layout Standard
+Im Rahmen des Seminars wird ein Web Service implementiert, welcher den SBB
+ Fahrplan zur Verfügung stellt sowie eine Fahrplanwebseite als Modul in
+ Orchard Project implementiert, welche über den Web Service Fahrplaninformatione
+n darstellt.
+\end_layout
+
+\begin_layout Standard
+Die Seminararbeit wurde nach dem Wasserfallmodell entwickelt.
+ Dabei wurden zuerst die Anforderungen erhoben und als Use-Case dargestellt.
+ Basierend auf den Anforderungen wurde ein Konzept entwickelt, welches im
+ Komponentenmodell (siehe Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Komponentenmodell"
+
+\end_inset
+
+) zusammengefasst ersichtlich ist.
+ Anschliessend wurde der Web Service implementiert, welcher die spezifizierten
+ Schnittstellen implementiert und den Web Service von SBB.ch abfragt.
+ Ausserdem wurde die Fahrplaninformationswebseite als Modul innerhalb von
+ Orchard Project implementiert.
+ In einem letzten Schritt wurden manuelle Integrationstests durchgeführt
+ welche die Fahrplaninformationen auf SBB.ch mitdenjenigen von OpenTimeTable
+ vergleicht.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ComponentModel.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Komponentenmodell
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Komponentenmodell"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Abschliessend lässt sich sagen, dass die Bearbeitung dieser Seminararbeit
+ aufwändiger war, als zuerst angenommen.
+ Die Verwendung von Orchard als CMS-Container hat teilweise einige Steine
+ in den Weg gelegt, die nicht aufgetreten wären, wenn eine eigene Webapplikation
+ auf Basis von ASP.NET MVC erstellt worden wäre.
+ Auch der ursprüngliche Plan, die Fahrplandaten als Open Data Service Protocol
+ Service zurückzugeben, der sich dann als unmöglich herausgestellt hat,
+ hat viel Zeit gekostet.
+\end_layout
+
+\end_body
+\end_document

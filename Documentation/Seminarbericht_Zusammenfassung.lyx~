@@ -1,0 +1,193 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass scrartcl
+\use_default_options true
+\maintain_unincluded_children false
+\language german-ch
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Evaluierung der Retrieval-Leistung einer Search Engine am Beispiel von allen
+ deutschen Wikipedia Artikeln
+\end_layout
+
+\begin_layout Subtitle
+Zusammenfassung
+\end_layout
+
+\begin_layout Author
+Florian Amstutz <
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+florian@amstutz.nu
+\end_layout
+
+\end_inset
+
+>
+\end_layout
+
+\begin_layout Standard
+Das Seminar Information Retrieval wird im Rahmen des Wahlpflichtmoduls Informati
+onssysteme besucht und hat die selbstständige Formulierung und Lösung eines
+ eigenen Retrievalproblems zum Ziel.
+ 
+\end_layout
+
+\begin_layout Standard
+Die deutschsprachige Wikipedia besitzt zum Zeitpunkt April 2012 ca.
+ 1.4 Mio Artikel die über die interne Such-Engine schnell und effektiv gesucht
+ werden können.
+ Innerhalb dieser Seminararbeit soll herausgefunden werden inwieweit mittels
+ einer eigenentwickelten Search-Engine die Kenngrössen Precision und Recall
+ der Wikipedia Search-Engine erreicht oder gar übertroffen werden können.
+\end_layout
+
+\begin_layout Standard
+Konkret wird ein Vergleich anhand verschiedener Beispielabfragen zwischen
+ eigener Search-Engine und Wikipedia-Search-Engine erstellt und es werden
+ die Kenngrössen Recall und Precision anhand der Beispielabfragen in der
+ eigens implementierten Suchengine ermittelt sowie der Wikipedia Search-Engine
+ ermittelt.
+\end_layout
+
+\begin_layout Standard
+Auf Basis eines Wikipedia XML-Dumps mit allen Artikeln wird mittels Lucene.Net
+ verschiedene Indexe mit unterschiedlicher Datengrundlage erstellt.
+ Folgender Ablauf hat sich als idealer Indexerstellungsprozess herausgestellt:
+\end_layout
+
+\begin_layout Enumerate
+Wikpedia XML-Dump in rund 1 MB grosse XML-Dateien unterteilen
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+IndexWriter
+\emph default
+ mit Katalogverzeichnis erzeugen
+\end_layout
+
+\begin_layout Enumerate
+Jedes unterteilte XML-Dokument einlesen und parsen
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Für jeden relevanten XML-Knoten
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+ein 
+\emph on
+Document
+\emph default
+ mit den für den Index wichtigen 
+\emph on
+Fields
+\emph default
+ erstellen
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Document
+\emph default
+ dem Index hinzufügen
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+Index optimieren
+\end_layout
+
+\begin_layout Standard
+Auf Basis dieser Indexe werden die Suchresultate verschiedener Beispielqueries
+ ermittelt, gleichzeitig werden dieselben Queries auf der Wikipedia Search-Engin
+e ausgeführt.
+ Die daraus resultierenden Suchresultate werden anhand der zwei Kennzahlen
+ Übereinstimmung Score 
+\begin_inset Formula $\ddot{U}S_{Suchbegriff}=\frac{\frac{Resultat_{LuceneS1}}{Resultat_{WikipediaS1}}+\frac{Resultat_{LuceneS2}}{Resultat_{WikipediaS2}}+\frac{Resultat_{LuceneS3}}{Resultat_{WikipediaS3}}}{3}$
+\end_inset
+
+ und Übereinstimmung Anzahl 
+\begin_inset Formula $\ddot{U}A_{Suchbegriff}=\frac{Anzahl_{LuceneS}}{Anzahl_{WikipediaS}}$
+\end_inset
+
+ verglichen.
+\end_layout
+
+\begin_layout Standard
+Aus diesen Kennzahl ergibt sich, dass die Übereinstimmung Anzahl keinerlei
+ Relevanz besitzt, da der Wikipedia Index nur Artikelseiten darstellt und
+ Metadaten beizieht um die Suchmenge einzuschränken.
+ Die Übereinstimmung Score zeigt, dass je nach Suchbegriff die selbsterstellten
+ Indexe mit der Wikipedia Search-Engine relativ gut übereinstimmen.
+ Zur weiteren Verbesserung der Score müssten jedoch weitere Metadaten indexiert
+ werden womit es auch möglich wär, die bereits in Wikipedia verfügbaren
+ Taxonomien und Thesauri zu verwenden, um eine verbesserte Treffergenauigkeit
+ zu erzielen.
+\end_layout
+
+\end_body
+\end_document
